@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zundoko", "Zundoko\Zundoko.csproj", "{1FE088B1-7A6B-46FD-B767-2E2B9DDE1860}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zundoko.Core", "Zundoko.Core\Zundoko.Core.csproj", "{1F80C571-DE26-4B8F-9588-6EA9CE319C3E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zundoko.App", "Zundoko.App\Zundoko.App.csproj", "{498037EC-F56E-4578-A11E-3543015BFE3F}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1FE088B1-7A6B-46FD-B767-2E2B9DDE1860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1FE088B1-7A6B-46FD-B767-2E2B9DDE1860}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1FE088B1-7A6B-46FD-B767-2E2B9DDE1860}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1FE088B1-7A6B-46FD-B767-2E2B9DDE1860}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F80C571-DE26-4B8F-9588-6EA9CE319C3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F80C571-DE26-4B8F-9588-6EA9CE319C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F80C571-DE26-4B8F-9588-6EA9CE319C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
