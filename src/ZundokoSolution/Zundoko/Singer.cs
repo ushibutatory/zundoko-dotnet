@@ -3,65 +3,53 @@ using Zundoko.Songs;
 
 namespace Zundoko
 {
-	/// <summary>
-	/// 歌手クラス
-	/// </summary>
-	public class Singer
-	{
-		#region Private変数
-		/// <summary>
-		/// 乱数オブジェクト
-		/// </summary>
-		private readonly Random _random;
-		#endregion
+    /// <summary>
+    /// 歌手
+    /// </summary>
+    public class Singer
+    {
+        /// <summary>
+        /// 乱数オブジェクト
+        /// </summary>
+        private readonly Random _random;
 
-		#region コンストラクタ
-		/// <summary>
-		/// 新しいインスタンスを生成します。
-		/// </summary>
-		public Singer()
-		{
-			// 乱数初期化
-			this._random = new Random();
-		}
-		#endregion
+        /// <summary>
+        /// 新しいインスタンスを生成します。
+        /// </summary>
+        public Singer()
+        {
+            // 乱数初期化
+            _random = new Random();
+        }
 
-		#region プロパティ
-		/// <summary>
-		/// 歌を取得します。
-		/// </summary>
-		public ISong Song { get; private set; }
-		#endregion
+        /// <summary>
+        /// 歌を取得します。
+        /// </summary>
+        public ISong Song { get; private set; }
 
-		#region Publicメソッド
-		/// <summary>
-		/// 歌を設定します。
-		/// </summary>
-		/// <param name="song">歌オブジェクト</param>
-		public void SetSong(ISong song)
-		{
-			this.Song = song;
-		}
+        /// <summary>
+        /// 歌を設定します。
+        /// </summary>
+        /// <param name="song">歌オブジェクト</param>
+        public void SetSong(ISong song)
+        {
+            Song = song;
+        }
 
-		/// <summary>
-		/// 1フレーズ取得します。
-		/// </summary>
-		/// <returns>フレーズ</returns>
-		public String Sing()
-		{
-			if (this.Song == null)
-			{
-				throw new InvalidOperationException("Songプロパティが未設定です。");
-			}
-			else
-			{
-				// ランダムにインデックスを生成
-				var index = this._random.Next(0, this.Song.UsingPhraseList.Count);
+        /// <summary>
+        /// 1フレーズ取得します。
+        /// </summary>
+        /// <returns>フレーズ</returns>
+        public string Sing()
+        {
+            if (Song == null)
+                throw new InvalidOperationException("Songプロパティが未設定です。");
 
-				// フレーズを返す
-				return this.Song.UsingPhraseList[index];
-			}
-		}
-		#endregion
-	}
+            // ランダムにインデックスを生成
+            var index = _random.Next(0, Song.UsingPhraseList.Count);
+
+            // フレーズを返す
+            return Song.UsingPhraseList[index];
+        }
+    }
 }
