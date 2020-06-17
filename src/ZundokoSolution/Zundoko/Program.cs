@@ -21,7 +21,7 @@ namespace Zundoko
                 // パラメータを変換
                 var argsConverter = new ArgsConverter(args);
 
-                if (argsConverter.ErrorList.Count() > 0)
+                if (argsConverter.HasError)
                 {
                     // 引数エラー
                     var text = new StringBuilder();
@@ -121,7 +121,7 @@ namespace Zundoko
                     }
                 }
 
-                ErrorList = errorList;
+                Errors = errorList;
             }
 
             /// <summary>
@@ -132,7 +132,12 @@ namespace Zundoko
             /// <summary>
             /// エラーリストを取得します。
             /// </summary>
-            public IEnumerable<ErrorType> ErrorList { get; private set; }
+            public IEnumerable<ErrorType> Errors { get; private set; }
+
+            /// <summary>
+            /// エラー有無を取得します。
+            /// </summary>
+            public bool HasError => Errors.Count() > 0;
 
             /// <summary>
             /// 歌のタイトルを取得します。
