@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Zundoko.Models
+namespace Zundoko.Core.Models.Abstracts
 {
     /// <summary>
     /// 歌基底クラス
@@ -12,70 +12,70 @@ namespace Zundoko.Models
         /// <summary>
         /// 使用するフレーズリスト
         /// </summary>
-        private IList<string> _usingPhraseList;
+        private IEnumerable<string> _phrases;
 
         /// <summary>
         /// 完成フレーズリスト
         /// </summary>
-        private IEnumerable<string> _completePhraseList;
+        private IEnumerable<string> _completePhrases;
 
         /// <summary>
         /// 完成時の掛け声
         /// </summary>
-        private string _shout;
+        private string _lastPhrase;
 
         /// <summary>
         /// 使用フレーズリストを取得します。
         /// </summary>
-        public IList<string> UsingPhraseList
+        public IEnumerable<string> Phrases
         {
             get
             {
-                if (_usingPhraseList == null)
+                if (_phrases == null)
                 {
                     // 初回取得
-                    _usingPhraseList = _CreateUsingPhraseList();
+                    _phrases = _GetAllPhrases();
                 }
-                return _usingPhraseList;
+                return _phrases;
             }
         }
 
         /// <summary>
         /// 完成フレーズリストを取得します。
         /// </summary>
-        public IEnumerable<string> CompletePhraseList
+        public IEnumerable<string> CompletePhrases
         {
             get
             {
-                if (_completePhraseList == null)
+                if (_completePhrases == null)
                 {
                     // 初回取得
-                    var list = _CreateCompletePhraseIndexList();
+                    var list = _GetCompletePhraseIndexList();
 
-                    _completePhraseList = list.Select((i) => UsingPhraseList[i]).ToList();
+                    _completePhrases = list.Select((i) => Phrases.ElementAt(i)).ToList();
                 }
-                return _completePhraseList;
+                return _completePhrases;
             }
         }
 
         /// <summary>
         /// 完成フレーズ数を取得します。
         /// </summary>
-        public int CompletePhraseCount => CompletePhraseList.Count();
+        public int CompletePhraseCount => CompletePhrases.Count();
 
         /// <summary>
         /// 掛け声を取得します。
         /// </summary>
-        public string ShoutPhrase
+        public string LastPhrase
         {
             get
             {
-                if (string.IsNullOrEmpty(_shout))
+                if (string.IsNullOrEmpty(_lastPhrase))
                 {
                     // 初回取得
-                    _shout = _CreateShout();
+                    _lastPhrase = _GetLastPhrase();
                 }
-                return _shout;
+                return _lastPhrase;
             }
         }
 
@@ -93,7 +93,7 @@ namespace Zundoko.Models
             var input = string.Join(separator, phraseList.Skip(phraseList.Count() - CompletePhraseCount));
 
             // 完成フレーズを結合
-            var answer = string.Join(separator, _completePhraseList);
+            var answer = string.Join(separator, _completePhrases);
 
             return input == answer;
         }
@@ -102,18 +102,18 @@ namespace Zundoko.Models
         /// 使用フレーズリストを生成します。
         /// </summary>
         /// <returns>使用フレーズリスト</returns>
-        protected abstract List<string> _CreateUsingPhraseList();
+        protected abstract IEnumerable<string> _GetAllPhrases();
 
         /// <summary>
         /// 完成フレーズのインデックスリストを生成します。
         /// </summary>
         /// <returns>完成フレーズのインデックスリスト</returns>
-        protected abstract IEnumerable<int> _CreateCompletePhraseIndexList();
+        protected abstract IEnumerable<int> _GetCompletePhraseIndexList();
 
         /// <summary>
         /// 掛け声を生成します。
         /// </summary>
         /// <returns>掛け声</returns>
-        protected abstract string _CreateShout();
+        protected abstract string _GetLastPhrase();
     }
 }

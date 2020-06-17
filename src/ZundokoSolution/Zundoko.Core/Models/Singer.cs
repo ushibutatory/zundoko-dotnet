@@ -1,12 +1,17 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using Zundoko.Core.Models.Abstracts;
 
-namespace Zundoko.Models
+namespace Zundoko.Core.Models
 {
     /// <summary>
     /// 歌手
     /// </summary>
-    public class Singer
+    public class Singer : ISinger
     {
+        private readonly ILogger<Singer> _logger;
+
         /// <summary>
         /// 乱数オブジェクト
         /// </summary>
@@ -15,8 +20,10 @@ namespace Zundoko.Models
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        public Singer()
+        public Singer(ILoggerFactory loggerFactory)
         {
+            _logger = loggerFactory.CreateLogger<Singer>();
+
             // 乱数初期化
             _random = new Random();
         }
@@ -27,10 +34,10 @@ namespace Zundoko.Models
         public ISong Song { get; private set; }
 
         /// <summary>
-        /// 歌を設定します。
+        /// 歌う準備をします。
         /// </summary>
-        /// <param name="song">歌オブジェクト</param>
-        public void SetSong(ISong song)
+        /// <param name="song">歌</param>
+        public void Standby(ISong song)
         {
             Song = song;
         }
@@ -44,11 +51,11 @@ namespace Zundoko.Models
             if (Song == null)
                 throw new InvalidOperationException("Songプロパティが未設定です。");
 
-            // ランダムにインデックスを生成
-            var index = _random.Next(0, Song.UsingPhraseList.Count);
+            // フレーズ候補取得
+            var phrases = Song.Phrases.ToList();
 
-            // フレーズを返す
-            return Song.UsingPhraseList[index];
+            // ランダムにフレーズを返す
+            return phrases[_random.Next(0, phrases.Count)];
         }
     }
 }

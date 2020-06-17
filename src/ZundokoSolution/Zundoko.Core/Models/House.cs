@@ -1,56 +1,57 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using Zundoko.Core.Models.Abstracts;
 
-namespace Zundoko.Models
+namespace Zundoko.Core.Models
 {
     /// <summary>
     /// 会場
     /// </summary>
-    public class House
+    public class House : IHouse
     {
+        private readonly ILogger<House> _logger;
+
         /// <summary>
         /// 歌手を取得します。
         /// </summary>
-        public Singer Singer { get; private set; }
+        public ISinger Singer { get; }
 
         /// <summary>
         /// 観客を取得します。
         /// </summary>
-        public Audience Audience { get; private set; }
-
-        /// <summary>
-        /// 試行回数を取得または設定します。
-        /// </summary>
-        public int LimitCount { get; set; }
+        public IAudience Audience { get; }
 
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        /// <param name="singer">歌手オブジェクト</param>
-        /// <param name="audience">観客オブジェクト</param>
-        public House(Singer singer, Audience audience)
+        /// <param name="singer">歌手</param>
+        /// <param name="audience">観客</param>
+        public House(ILoggerFactory loggerFactory, ISinger singer, IAudience audience)
         {
+            _logger = loggerFactory.CreateLogger<House>();
+
             Singer = singer;
             Audience = audience;
-            LimitCount = 0;
         }
 
         /// <summary>
         /// 歌を演奏します。
         /// </summary>
-        /// <param name="song">歌オブジェクト</param>
-        public void Play(ISong song)
+        /// <param name="song">歌</param>
+        /// <param name="limitCount">試行回数</param>
+        public void Play(ISong song, int limitCount = 100)
         {
             if (song == null)
-                throw new InvalidOperationException("引数[song]がnullです。");
+                throw new InvalidOperationException($"引数[{nameof(song)}]がnullです。");
             if (Singer == null)
                 throw new Exception("Singerプロパティが未設定です。");
             if (Audience == null)
                 throw new Exception("Audienceプロパティが未設定です。");
 
-            // 歌を設定
-            Singer.SetSong(song);
-            Audience.SetSong(song);
+            // 準備
+            Singer.Standby(song);
+            Audience.Standby(song);
 
             var phraseList = new List<string>();
             var count = 0;
@@ -80,7 +81,7 @@ namespace Zundoko.Models
                 }
                 else
                 {
-                    if (LimitCount > 0 && count >= LimitCount)
+                    if (limitCount > 0 && count >= limitCount)
                     {
                         // 試行回数を超えた場合
                         Console.WriteLine();

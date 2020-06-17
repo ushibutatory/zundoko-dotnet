@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Zundoko.Models
+namespace Zundoko.Core.Models.Abstracts
 {
     /// <summary>
     /// 歌インタフェース
@@ -8,25 +8,25 @@ namespace Zundoko.Models
     public interface ISong
     {
         /// <summary>
-        /// 完成フレーズ数を取得します。
+        /// 歌詞を完成させるフレーズ数を取得します。
         /// </summary>
         int CompletePhraseCount { get; }
 
         /// <summary>
         /// 使用するフレーズリストを取得します。
         /// </summary>
-        IList<string> UsingPhraseList { get; }
+        IEnumerable<string> Phrases { get; }
 
         /// <summary>
-        /// 掛け声を取得します。
+        /// 最後の掛け声を取得します。
         /// </summary>
-        string ShoutPhrase { get; }
+        string LastPhrase { get; }
 
         /// <summary>
-        /// フレーズが完成しているかどうかを取得します。
+        /// 歌詞が完成しているかどうかを取得します。
         /// </summary>
-        /// <param name="phraseList">フレーズリスト</param>
+        /// <param name="phrases">フレーズリスト</param>
         /// <returns>完成しているかどうか</returns>
-        bool IsCompleted(IEnumerable<string> phraseList);
+        bool IsCompleted(IEnumerable<string> phrases);
     }
 }

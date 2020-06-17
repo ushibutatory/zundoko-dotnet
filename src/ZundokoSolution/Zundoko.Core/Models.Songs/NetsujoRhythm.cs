@@ -1,20 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Zundoko.Core.Models.Abstracts;
 
-namespace Zundoko.Models.Songs
+namespace Zundoko.Core.Models.Songs
 {
     /// <summary>
     /// 歌：熱情の律動
     /// </summary>
     public class NetsujoRhythm : BaseSong
     {
-        protected override List<string> _CreateUsingPhraseList()
-            => new List<string>() { "ﾃﾞﾝﾃﾞ", "ﾃﾞｯﾃﾞ", "ﾃﾞﾚ" };
+        protected override IEnumerable<string> _GetAllPhrases()
+            => new[] { "ﾃﾞﾝﾃﾞ", "ﾃﾞｯﾃﾞ", "ﾃﾞﾚ" };
 
-        protected override IEnumerable<int> _CreateCompletePhraseIndexList()
+        protected override IEnumerable<int> _GetCompletePhraseIndexList()
             => new[] { 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2 };
 
-        protected override string _CreateShout()
+        protected override string _GetLastPhrase()
         {
             var text = new StringBuilder();
             text.AppendLine();

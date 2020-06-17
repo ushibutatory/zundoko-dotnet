@@ -1,14 +1,20 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
+using Zundoko.Core.Models.Abstracts;
 
-namespace Zundoko.Models
+namespace Zundoko.Core.Models
 {
     /// <summary>
     /// 観客
     /// </summary>
-    public class Audience
+    public class Audience : IAudience
     {
-        public Audience()
+        private readonly ILogger<Audience> _logger;
+
+        public Audience(ILoggerFactory loggerFactory)
         {
+            _logger = loggerFactory.CreateLogger<Audience>();
+
             IsSatisfied = false;
         }
 
@@ -23,10 +29,10 @@ namespace Zundoko.Models
         public bool IsSatisfied { get; private set; }
 
         /// <summary>
-        /// 歌を設定します。
+        /// 歌を聴く準備をします。
         /// </summary>
-        /// <param name="song">歌オブジェクト</param>
-        public void SetSong(ISong song)
+        /// <param name="song">歌</param>
+        public void Standby(ISong song)
         {
             Song = song;
 
@@ -37,7 +43,7 @@ namespace Zundoko.Models
         /// <summary>
         /// 叫びます。
         /// </summary>
-        /// <returns>魂の掛け声</returns>
+        /// <returns>掛け声</returns>
         public string Shout()
         {
             if (Song == null)
@@ -47,7 +53,7 @@ namespace Zundoko.Models
             IsSatisfied = true;
 
             // 掛け声を返す
-            return Song.ShoutPhrase;
+            return Song.LastPhrase;
         }
     }
 }
