@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Zundoko.Songs
+namespace Zundoko.Models
 {
     /// <summary>
     /// 歌基底クラス

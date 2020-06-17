@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Zundoko.Songs;
 
-namespace Zundoko
+namespace Zundoko.Models
 {
     /// <summary>
     /// 会場

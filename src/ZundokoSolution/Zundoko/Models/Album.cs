@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Zundoko.Songs;
 
-namespace Zundoko
+namespace Zundoko.Models
 {
     /// <summary>
     /// アルバム

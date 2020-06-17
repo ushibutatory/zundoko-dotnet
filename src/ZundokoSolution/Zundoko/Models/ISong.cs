@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Zundoko.Songs
+namespace Zundoko.Models
 {
     /// <summary>
     /// 歌インタフェース

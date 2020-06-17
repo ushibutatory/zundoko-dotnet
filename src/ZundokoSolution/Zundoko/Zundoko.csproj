@@ -44,23 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Album.cs" />
-    <Compile Include="Audience.cs" />
-    <Compile Include="House.cs" />
-    <Compile Include="Songs\BaseSong.cs" />
-    <Compile Include="Songs\Implements\Arashi.cs" />
-    <Compile Include="Songs\Implements\Progress.cs" />
-    <Compile Include="Songs\Implements\Kinchan.cs" />
-    <Compile Include="Songs\Implements\LoveSomebody.cs" />
-    <Compile Include="Songs\Implements\NetsujoRhythm.cs" />
-    <Compile Include="Songs\Implements\SoranBushi.cs" />
-    <Compile Include="Songs\Implements\Thrill.cs" />
-    <Compile Include="Songs\Implements\Ultrasoul.cs" />
-    <Compile Include="Songs\Implements\ZundokoBushi.cs" />
-    <Compile Include="Songs\ISong.cs" />
+    <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\Audience.cs" />
+    <Compile Include="Models\House.cs" />
+    <Compile Include="Models\BaseSong.cs" />
+    <Compile Include="Models.Songs\Arashi.cs" />
+    <Compile Include="Models.Songs\Progress.cs" />
+    <Compile Include="Models.Songs\Kinchan.cs" />
+    <Compile Include="Models.Songs\LoveSomebody.cs" />
+    <Compile Include="Models.Songs\NetsujoRhythm.cs" />
+    <Compile Include="Models.Songs\SoranBushi.cs" />
+    <Compile Include="Models.Songs\Thrill.cs" />
+    <Compile Include="Models.Songs\Ultrasoul.cs" />
+    <Compile Include="Models.Songs\ZundokoBushi.cs" />
+    <Compile Include="Models\ISong.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Singer.cs" />
+    <Compile Include="Models\Singer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

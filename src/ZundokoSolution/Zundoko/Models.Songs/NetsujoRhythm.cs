@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Zundoko.Songs.Implements
+namespace Zundoko.Models.Songs
 {
     /// <summary>
     /// 歌：熱情の律動

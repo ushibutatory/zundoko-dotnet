@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 
-namespace Zundoko.Songs.Implements
+namespace Zundoko.Models.Songs
 {
     /// <summary>
-    /// 歌：ウルトラソウル
+    /// 歌：ソーラン節
     /// </summary>
-    public class Ultrasoul : BaseSong
+    public class SoranBushi : BaseSong
     {
         protected override List<string> _CreateUsingPhraseList()
-            => new List<string>() { "ウ", "ル", "ト", "ラ", "ソ" };
+            => new List<string>() { "ヤーレン", "ソーラン" };
 
         protected override IEnumerable<int> _CreateCompletePhraseIndexList()
-            => new[] { 0, 1, 2, 3, 4, 0, 1 };
+            => new[] { 0, 1, 1, 0, 1, 1 };
 
         protected override string _CreateShout()
-            => "！ ＼ハァイ！／";
+            => "（ハイ！　ハイ！）";
     }
 }

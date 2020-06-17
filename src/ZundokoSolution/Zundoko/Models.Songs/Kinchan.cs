@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 
-namespace Zundoko.Songs.Implements
+namespace Zundoko.Models.Songs
 {
     /// <summary>
-    /// 歌：嵐
+    /// 歌：欽ちゃん
     /// </summary>
-    public class Arashi : BaseSong
+    public class Kinchan : BaseSong
     {
         protected override List<string> _CreateUsingPhraseList()
-            => new List<string>() { "A", "RA", "SHI", " " };
+            => new List<string>() { "８", "時", "だ", "ョ", "！", };
 
         protected override IEnumerable<int> _CreateCompletePhraseIndexList()
-            // ARASHI ARASHI
-            => new[] { 0, 1, 2, 3, 0, 1, 2 };
+            // ８ 時 だ ョ ！
+            => new[] { 0, 1, 2, 3, 4 };
 
         protected override string _CreateShout()
-            => " for dream...";
+            => "＼全員集合／";
     }
 }

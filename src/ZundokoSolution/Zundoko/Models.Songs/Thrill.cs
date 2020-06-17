@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Zundoko.Songs.Implements
+namespace Zundoko.Models.Songs
 {
     /// <summary>
     /// 歌：スリル

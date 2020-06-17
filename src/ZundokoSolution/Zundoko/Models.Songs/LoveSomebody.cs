@@ -1,20 +1,19 @@
 ﻿using System.Collections.Generic;
 
-namespace Zundoko.Songs.Implements
+namespace Zundoko.Models.Songs
 {
     /// <summary>
-    /// 歌：欽ちゃん
+    /// 歌：LoveSomebody
     /// </summary>
-    public class Kinchan : BaseSong
+    public class LoveSomebody : BaseSong
     {
         protected override List<string> _CreateUsingPhraseList()
-            => new List<string>() { "８", "時", "だ", "ョ", "！", };
+            => new List<string>() { "ネバ", "ネーバー" };
 
         protected override IEnumerable<int> _CreateCompletePhraseIndexList()
-            // ８ 時 だ ョ ！
-            => new[] { 0, 1, 2, 3, 4 };
+            => new[] { 0, 0, 0, 0, 0, 0, 1 };
 
         protected override string _CreateShout()
-            => "＼全員集合／";
+            => "Let the love go I wanna Love somebody tonight";
     }
 }

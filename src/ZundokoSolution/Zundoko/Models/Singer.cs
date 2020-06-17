@@ -1,7 +1,6 @@
 ﻿using System;
-using Zundoko.Songs;
 
-namespace Zundoko
+namespace Zundoko.Models
 {
     /// <summary>
     /// 歌手
