@@ -11,7 +11,6 @@ namespace Zundoko.App
     {
         private static void Main(string[] args)
         {
-            // TODO: Consoleをインジェクションする
             var provider = new Func<IServiceProvider>(() =>
             {
                 var services = new ServiceCollection()
@@ -21,7 +20,10 @@ namespace Zundoko.App
                         // TODO: add provider
                     });
 
-                services.SetupZundokoApplication();
+                services.SetupZundokoApplication((services) =>
+                {
+                    return new MyConsole();
+                });
 
                 return services.BuildServiceProvider();
             })();
@@ -29,6 +31,7 @@ namespace Zundoko.App
             // TODO: 歌一覧を取得できるようなオプションを追加する
             var arguments = new Arguments(args);
 
+            var console = provider.GetService<IConsole>();
             if (arguments.HasError)
             {
                 // 引数エラー
@@ -40,7 +43,7 @@ namespace Zundoko.App
                 text.AppendLine("Options:");
                 text.AppendLine("  歌のタイトル ... 英字で指定してください（前方一致）");
                 text.AppendLine("  試行回数 ... 最大の試行回数。未指定時は無制限。");
-                Console.WriteLine(text.ToString());
+                console.WriteLine(text.ToString());
             }
             else
             {

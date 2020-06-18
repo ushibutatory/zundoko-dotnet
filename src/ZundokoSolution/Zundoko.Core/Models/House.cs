@@ -11,6 +11,7 @@ namespace Zundoko.Core.Models
     public class House : IHouse
     {
         private readonly ILogger<House> _logger;
+        private readonly IConsole _console;
 
         /// <summary>
         /// 歌手を取得します。
@@ -27,9 +28,10 @@ namespace Zundoko.Core.Models
         /// </summary>
         /// <param name="singer">歌手</param>
         /// <param name="audience">観客</param>
-        public House(ILoggerFactory loggerFactory, ISinger singer, IAudience audience)
+        public House(ILoggerFactory loggerFactory, IConsole console, ISinger singer, IAudience audience)
         {
             _logger = loggerFactory.CreateLogger<House>();
+            _console = console;
 
             Singer = singer;
             Audience = audience;
@@ -61,8 +63,7 @@ namespace Zundoko.Core.Models
                 var phrase = Singer.Sing();
 
                 // フレーズ表示
-                // TODO: 直接Consoleを呼び出さないようにする
-                Console.Write(phrase);
+                _console.Write(phrase);
 
                 // リスト追加
                 phraseList.Add(phrase);
@@ -74,18 +75,18 @@ namespace Zundoko.Core.Models
                     var shout = Audience.Shout();
 
                     // 掛け声表示
-                    Console.WriteLine(shout);
+                    _console.WriteLine(shout);
 
                     // 回数表示
-                    Console.WriteLine($"{count:#,##0}回で完成しました。");
+                    _console.WriteLine($"{count:#,##0}回で完成しました。");
                 }
                 else
                 {
                     if (limitCount > 0 && count >= limitCount)
                     {
                         // 試行回数を超えた場合
-                        Console.WriteLine();
-                        Console.WriteLine("完成しませんでした……。");
+                        _console.WriteLine();
+                        _console.WriteLine("完成しませんでした……。");
                         break;
                     }
                     else
