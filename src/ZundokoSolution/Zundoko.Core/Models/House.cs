@@ -86,7 +86,7 @@ namespace Zundoko.Core.Models
                     {
                         // 試行回数を超えた場合
                         _console.WriteLine();
-                        _console.WriteLine("完成しませんでした……。");
+                        _console.WriteLine("残念・・・。");
                         break;
                     }
                     else

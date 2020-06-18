@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.CommandLineUtils;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Text;
+using System.Linq;
 using Zundoko.Core.Extensions;
 using Zundoko.Core.Models.Abstracts;
 
@@ -28,33 +29,71 @@ namespace Zundoko.App
                 return services.BuildServiceProvider();
             })();
 
-            // TODO: 歌一覧を取得できるようなオプションを追加する
-            var arguments = new Arguments(args);
-
             var console = provider.GetService<IConsole>();
-            if (arguments.HasError)
+
+            var app = new CommandLineApplication(throwOnUnexpectedArg: false)
             {
-                // 引数エラー
-                var text = new StringBuilder();
-                text.AppendLine();
-                text.AppendLine();
-                text.AppendLine("使用方法: 歌のタイトル [試行回数]");
-                text.AppendLine("例）z 100");
-                text.AppendLine("Options:");
-                text.AppendLine("  歌のタイトル ... 英字で指定してください（前方一致）");
-                text.AppendLine("  試行回数 ... 最大の試行回数。未指定時は無制限。");
-                console.WriteLine(text.ToString());
-            }
-            else
+                Name = "Zundoko.App",
+                Description = "Zundoko Application for .NET Core.",
+            };
+            var helpOption = "-?|-h|--help";
+            app.HelpOption(helpOption);
+
+            app.Command("list", command =>
             {
-                var album = provider.GetService<IAlbum>();
+                command.Description = "歌一覧を表示します。";
+                command.HelpOption(helpOption);
 
-                var song = album.FindSong(arguments.SongTitle);
+                command.OnExecute(() =>
+                {
+                    var album = provider.GetService<IAlbum>();
 
-                var house = provider.GetService<IHouse>();
+                    var songTitles = album.Songs.Select(song => song.GetType().Name);
 
-                house.Play(song, arguments.LimitCount);
-            }
+                    console.WriteLine(string.Join(Environment.NewLine, songTitles));
+
+                    return 0;
+                });
+            });
+
+            app.Command("play", command =>
+            {
+                command.Description = "歌います。";
+                command.HelpOption(helpOption);
+
+                const int defaultCount = 100;
+
+                var title = command.Argument("title", "曲名をアルファベットで指定します（前方一致）。");
+                var count = command.Argument("count", $"試行回数。指定しない場合は{defaultCount}回試行します。");
+
+                command.OnExecute(() =>
+                {
+                    if (title == null || string.IsNullOrEmpty(title.Value))
+                    {
+                        return command.Execute("-h");
+                    }
+                    var album = provider.GetService<IAlbum>();
+
+                    var song = album.FindSong(title.Value);
+
+                    if (song == null)
+                    {
+                        console.WriteLine("歌が見つかりませんでした。");
+                        return -1;
+                    }
+
+                    var house = provider.GetService<IHouse>();
+
+                    house.Play(song, int.TryParse(count?.Value, out var i) ? i : defaultCount);
+
+                    return 0;
+                });
+            });
+
+            // 引数なしで実行された場合はヘルプ表示
+            if (args?.Length == 0) args = new[] { "-h" };
+
+            app.Execute(args);
         }
     }
 }
