@@ -13,6 +13,11 @@
 - 歌を増やしやすくする（拡張性を考える）。
     - インタフェースとクラスの分離。
     - 複数の歌を格納するアルバムクラスを作った。
+    - 今回の要件であれば、jsonファイルなどから読み込むように作ったほうがより拡張しやすい作りになったかもしれない。
+- DIを使う。
+    - 特に、ビジネスロジック内で標準出力しないようにする。
+- CUIアプリケーションらしくする（ヘルプオプションなど）。
+    - .NETの `CommandLineApplication` を使って実装する。
 
 ### 遊んでみたこと
 
@@ -21,14 +26,36 @@
 - 歌手や観客は、会場に集まっていることにしたい。
     - 会場クラスを定義し、歌手と観客を入れるようにした。
 
-## 実行
+## コマンド
+
+### list: 一覧
+
+実装済みの歌を出力します。
 
 ```bash
-$ dotnet Zundoko.App.dll z 100
+$ dotnet Zundoko.App.dll list
+Arashi
+Kinchan
+LoveSomebody
+NetsujoRhythm
+Progress
+SoranBushi
+Thrill
+Ultrasoul
+ZundokoBushi
+```
+
+### play: 実行
+
+回数を指定して実行します。
+未指定の場合は100回試行します。
+
+```bash
+$ dotnet Zundoko.App.dll play z
 ズンドコズンズンズンズンドコ＼キ・ヨ・シ！／
 7回で完成しました。
 
-$ dotnet Zundoko.App.dll s 100
+$ dotnet Zundoko.App.dll play s 100
 ソーランソーランソーランソーランヤーレンヤーレンソーランソーランソーランソーランソーランヤーレ
 ンヤーレンヤーレンソーランヤーレンソーランソーランソーランソーランヤーレンヤーレンヤーレンヤー
 レンソーランヤーレンヤーレンヤーレンソーランヤーレンソーランソーランソーランソーランヤーレンヤ
@@ -36,4 +63,22 @@ $ dotnet Zundoko.App.dll s 100
 ヤーレンヤーレンソーランヤーレンヤーレンヤーレンヤーレンソーランソーランヤーレンソーランソーラ
 ン（ハイ！　ハイ！）
 59回で完成しました。
+```
+
+### help: ヘルプ
+
+```bash
+$ dotnet Zundoko.App.dll -h
+
+
+Usage: Zundoko.App [options] [command]
+
+Options:
+  -?|-h|--help  Show help information
+
+Commands:
+  list  歌一覧を表示します。
+  play  歌います。
+
+Use "Zundoko.App [command] --help" for more information about a command.
 ```
