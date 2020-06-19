@@ -61,7 +61,7 @@ namespace Zundoko.App
                 var title = command.Argument("title", "曲名をアルファベットで指定します（前方一致）。");
                 var count = command.Argument("count", $"試行回数。指定しない場合は{defaultCount}回試行します。");
 
-                command.OnExecute(async () =>
+                command.OnExecute(() =>
                 {
                     if (title == null || string.IsNullOrEmpty(title.Value))
                     {
@@ -79,9 +79,10 @@ namespace Zundoko.App
 
                     var house = provider.GetService<IHouse>();
 
-                    var results = await house.PlayAsync(song, int.TryParse(count?.Value, out var i) ? i : defaultCount);
+                    var result = house.Play(song, int.TryParse(count?.Value, out var i) ? i : defaultCount);
 
-                    Console.WriteLine(string.Join("", results));
+                    Console.WriteLine(string.Join("", result.Phrases));
+                    Console.WriteLine(result.Message);
 
                     return 0;
                 });

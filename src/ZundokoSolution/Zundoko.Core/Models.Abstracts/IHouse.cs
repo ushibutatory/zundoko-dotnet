@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Zundoko.Core.Models.Abstracts
+﻿namespace Zundoko.Core.Models.Abstracts
 {
     /// <summary>
     /// 会場インタフェース
@@ -23,6 +20,6 @@ namespace Zundoko.Core.Models.Abstracts
         /// </summary>
         /// <param name="song">歌</param>
         /// <param name="limitCount">試行回数</param>
-        public Task<IEnumerable<string>> PlayAsync(ISong song, int limitCount);
+        public PlayResult Play(ISong song, int limitCount);
     }
 }
