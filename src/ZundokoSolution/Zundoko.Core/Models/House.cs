@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Zundoko.Core.Models.Abstracts;
 
 namespace Zundoko.Core.Models
@@ -11,7 +13,6 @@ namespace Zundoko.Core.Models
     public class House : IHouse
     {
         private readonly ILogger<House> _logger;
-        private readonly IConsole _console;
 
         /// <summary>
         /// 歌手を取得します。
@@ -28,10 +29,9 @@ namespace Zundoko.Core.Models
         /// </summary>
         /// <param name="singer">歌手</param>
         /// <param name="audience">観客</param>
-        public House(ILoggerFactory loggerFactory, IConsole console, ISinger singer, IAudience audience)
+        public House(ILoggerFactory loggerFactory, ISinger singer, IAudience audience)
         {
             _logger = loggerFactory.CreateLogger<House>();
-            _console = console;
 
             Singer = singer;
             Audience = audience;
@@ -42,7 +42,7 @@ namespace Zundoko.Core.Models
         /// </summary>
         /// <param name="song">歌</param>
         /// <param name="limitCount">試行回数</param>
-        public void Play(ISong song, int limitCount = 100)
+        public async Task<IEnumerable<string>> PlayAsync(ISong song, int limitCount = 100)
         {
             if (song == null)
                 throw new InvalidOperationException($"引数[{nameof(song)}]がnullです。");
@@ -55,51 +55,33 @@ namespace Zundoko.Core.Models
             Singer.Standby(song);
             Audience.Standby(song);
 
-            var phraseList = new List<string>();
+            var results = new List<string>();
             var count = 0;
             while (!Audience.IsSatisfied)
             {
                 // 歌手からフレーズを取得
-                var phrase = Singer.Sing();
-
-                // フレーズ表示
-                _console.Write(phrase);
-
-                // リスト追加
-                phraseList.Add(phrase);
+                results.Add(Singer.Sing());
                 count++;
 
-                if (song.IsCompleted(phraseList))
+                if (song.IsCompleted(results.TakeLast(song.CompletePhraseCount)))
                 {
                     // フレーズが完成したら、観客から掛け声を取得
-                    var shout = Audience.Shout();
+                    results.Add(Audience.Shout());
 
-                    // 掛け声表示
-                    _console.WriteLine(shout);
-
-                    // 回数表示
-                    _console.WriteLine($"{count:#,##0}回で完成しました。");
+                    // 結果
+                    results.Add($"{count:#,##0}回で完成しました。");
                 }
                 else
                 {
                     if (limitCount > 0 && count >= limitCount)
                     {
                         // 試行回数を超えた場合
-                        _console.WriteLine();
-                        _console.WriteLine("残念・・・。");
+                        results.Add("残念・・・。");
                         break;
-                    }
-                    else
-                    {
-                        // 試行回数以内の場合
-                        if (phraseList.Count > song.CompletePhraseCount)
-                        {
-                            // 完成フレーズ以上のフレーズは先頭から削除
-                            phraseList.RemoveAt(0);
-                        }
                     }
                 }
             }
+            return results;
         }
     }
 }

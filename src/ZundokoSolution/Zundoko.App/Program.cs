@@ -21,12 +21,10 @@ namespace Zundoko.App
                         // TODO: add provider
                     });
 
-                services.SetupZundokoApplication(() => new MyConsole());
+                services.SetupZundokoApplication();
 
                 return services.BuildServiceProvider();
             })();
-
-            var console = provider.GetService<IConsole>();
 
             var app = new CommandLineApplication(throwOnUnexpectedArg: false)
             {
@@ -47,7 +45,7 @@ namespace Zundoko.App
 
                     var songTitles = album.Songs.Select(song => song.GetType().Name);
 
-                    console.WriteLine(string.Join(Environment.NewLine, songTitles));
+                    Console.WriteLine(string.Join(Environment.NewLine, songTitles));
 
                     return 0;
                 });
@@ -63,7 +61,7 @@ namespace Zundoko.App
                 var title = command.Argument("title", "曲名をアルファベットで指定します（前方一致）。");
                 var count = command.Argument("count", $"試行回数。指定しない場合は{defaultCount}回試行します。");
 
-                command.OnExecute(() =>
+                command.OnExecute(async () =>
                 {
                     if (title == null || string.IsNullOrEmpty(title.Value))
                     {
@@ -75,13 +73,15 @@ namespace Zundoko.App
 
                     if (song == null)
                     {
-                        console.WriteLine("歌が見つかりませんでした。");
+                        Console.WriteLine("歌が見つかりませんでした。");
                         return -1;
                     }
 
                     var house = provider.GetService<IHouse>();
 
-                    house.Play(song, int.TryParse(count?.Value, out var i) ? i : defaultCount);
+                    var results = await house.PlayAsync(song, int.TryParse(count?.Value, out var i) ? i : defaultCount);
+
+                    Console.WriteLine(string.Join("", results));
 
                     return 0;
                 });
