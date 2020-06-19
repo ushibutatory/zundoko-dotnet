@@ -81,7 +81,8 @@ namespace Zundoko.App
 
                     var result = house.Play(song, int.TryParse(count?.Value, out var i) ? i : defaultCount);
 
-                    Console.WriteLine(string.Join("", result.Phrases));
+                    Console.WriteLine(string.Join("", result.SingerPhrases));
+                    Console.WriteLine(result.AudiencePhrase);
                     Console.WriteLine(result.Message);
 
                     return 0;

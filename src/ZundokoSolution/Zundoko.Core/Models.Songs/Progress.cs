@@ -19,7 +19,6 @@ namespace Zundoko.Core.Models.Songs
         protected override string _GetLastPhrase()
         {
             var text = new StringBuilder();
-            text.AppendLine();
             text.AppendLine("＿人人人人人人人＿");
             text.AppendLine("＞進捗どうですか＜");
             text.AppendLine("￣∨∨∨∨∨∨∨￣");

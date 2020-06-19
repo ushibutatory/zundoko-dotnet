@@ -66,17 +66,17 @@ namespace Zundoko.Core.Models
                 if (song.IsCompleted(phrases.TakeLast(song.CompletePhraseCount)))
                 {
                     // フレーズが完成したら、観客から掛け声を取得
-                    phrases.Add(Audience.Shout());
+                    var shout = Audience.Shout();
 
                     // 完成
-                    return new PlayResult(phrases, $"{count:#,##0}回で完成しました。");
+                    return new PlayResult(phrases, shout, $"{count:#,##0}回で完成しました。");
                 }
                 else
                 {
                     if (limitCount > 0 && count >= limitCount)
                     {
                         // 試行回数を超えた場合
-                        return new PlayResult(phrases, "残念・・・。");
+                        return new PlayResult(phrases, "", "残念・・・。");
                     }
                 }
             }

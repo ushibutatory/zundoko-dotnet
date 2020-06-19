@@ -16,6 +16,6 @@ namespace Zundoko.Core.Models.Songs
             => new[] { 0, 0, 1, 1, 1, 1, 2 };
 
         protected override string _GetLastPhrase()
-            => Environment.NewLine + "俺のすべては おまえのものさ";
+            => "俺のすべては おまえのものさ";
     }
 }

@@ -18,7 +18,6 @@ namespace Zundoko.Core.Models.Songs
         protected override string _GetLastPhrase()
         {
             var text = new StringBuilder();
-            text.AppendLine();
             text.AppendLine("　　　　∧＿∧");
             text.AppendLine("　　　（　´Д｀）");
             text.AppendLine("　　γＵ～''ヽヽ");
