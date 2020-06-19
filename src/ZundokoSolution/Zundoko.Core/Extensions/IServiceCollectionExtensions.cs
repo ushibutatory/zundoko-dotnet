@@ -3,14 +3,14 @@ using System;
 using Zundoko.Core.Models;
 using Zundoko.Core.Models.Abstracts;
 
-namespace Zundoko.Core.Extensions
+namespace Zundoko.Core
 {
     public static class IServiceCollectionExtensions
     {
-        public static IServiceCollection SetupZundokoApplication(this IServiceCollection services, Func<IServiceProvider, IConsole> createConsole)
+        public static IServiceCollection SetupZundokoApplication(this IServiceCollection services, Func<IConsole> createConsole)
         {
             services
-                .AddTransient(createConsole)
+                .AddTransient((provider) => createConsole())
                 .AddTransient<IHouse, House>()
                 .AddTransient<IAlbum, Album>()
                 .AddTransient<ISinger, Singer>()

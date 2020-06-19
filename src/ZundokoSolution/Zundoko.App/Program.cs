@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
-using Zundoko.Core.Extensions;
+using Zundoko.Core;
 using Zundoko.Core.Models.Abstracts;
 
 namespace Zundoko.App
@@ -21,10 +21,7 @@ namespace Zundoko.App
                         // TODO: add provider
                     });
 
-                services.SetupZundokoApplication((services) =>
-                {
-                    return new MyConsole();
-                });
+                services.SetupZundokoApplication(() => new MyConsole());
 
                 return services.BuildServiceProvider();
             })();
