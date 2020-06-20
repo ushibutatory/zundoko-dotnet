@@ -8,6 +8,11 @@ namespace Zundoko.Core.Models.Abstracts
     public interface ISong
     {
         /// <summary>
+        /// 実行名を取得します。
+        /// </summary>
+        string PlayName { get; }
+
+        /// <summary>
         /// 曲名を取得します。
         /// </summary>
         string Title { get; }

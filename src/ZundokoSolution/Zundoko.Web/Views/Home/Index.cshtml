@@ -8,7 +8,7 @@
     <ul class="list-group">
         @foreach (var song in Model.Songs)
         {
-            <li class="list-group-item text-left"><a href="api/play/z">@song.Title</a></li>
+            <li class="list-group-item text-left"><a href="api/play/@song.PlayName">@song.Title</a></li>
         }
     </ul>
 </div>

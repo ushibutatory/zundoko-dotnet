@@ -25,6 +25,11 @@ namespace Zundoko.Core.Models.Abstracts
         private string _lastPhrase;
 
         /// <summary>
+        /// 実行名を取得します。
+        /// </summary>
+        public string PlayName => GetType().Name;
+
+        /// <summary>
         /// 曲名を取得します。
         /// </summary>
         public abstract string Title { get; }

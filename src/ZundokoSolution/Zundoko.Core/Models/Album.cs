@@ -39,6 +39,6 @@ namespace Zundoko.Core.Models
         /// <returns>歌オブジェクト</returns>
         public ISong FindSong(string title)
             // クラス名が指定文字列で始まる歌オブジェクトを返す
-            => Songs.ToList().Find((song) => song.GetType().Name.ToUpper().StartsWith(title.ToUpper()));
+            => Songs.ToList().Find((song) => song.PlayName.ToUpper().StartsWith(title.ToUpper()));
     }
 }
