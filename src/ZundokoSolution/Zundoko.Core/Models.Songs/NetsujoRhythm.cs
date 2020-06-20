@@ -4,11 +4,11 @@ using Zundoko.Core.Models.Abstracts;
 
 namespace Zundoko.Core.Models.Songs
 {
-    /// <summary>
-    /// 歌：熱情の律動
-    /// </summary>
     public class NetsujoRhythm : BaseSong
     {
+        public override string Title
+            => "熱情の律動";
+
         protected override IEnumerable<string> _GetAllPhrases()
             => new[] { "ﾃﾞﾝﾃﾞ", "ﾃﾞｯﾃﾞ", "ﾃﾞﾚ" };
 

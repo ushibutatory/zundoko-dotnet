@@ -4,11 +4,11 @@ using Zundoko.Core.Models.Abstracts;
 
 namespace Zundoko.Core.Models.Songs
 {
-    /// <summary>
-    /// 歌？：進捗どうですか
-    /// </summary>
     public class Progress : BaseSong
     {
+        public override string Title
+            => "進捗どうですか";
+
         protected override IEnumerable<string> _GetAllPhrases()
             => new[] { "進", "捗", "ど", "う", "で", "す", "か" };
 

@@ -25,6 +25,11 @@ namespace Zundoko.Core.Models.Abstracts
         private string _lastPhrase;
 
         /// <summary>
+        /// 曲名を取得します。
+        /// </summary>
+        public abstract string Title { get; }
+
+        /// <summary>
         /// 使用フレーズリストを取得します。
         /// </summary>
         public IEnumerable<string> Phrases

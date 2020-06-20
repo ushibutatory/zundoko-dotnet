@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Zundoko.Core.Models.Abstracts;
 
 namespace Zundoko.Core.Models.Songs
 {
-    /// <summary>
-    /// 歌：スリル
-    /// </summary>
     public class Thrill : BaseSong
     {
+        public override string Title
+            => "スリル";
+
         protected override IEnumerable<string> _GetAllPhrases()
             => new[] { "ベビ", "ベイビ", "ベイベー" };
 

@@ -8,6 +8,11 @@ namespace Zundoko.Core.Models.Abstracts
     public interface ISong
     {
         /// <summary>
+        /// 曲名を取得します。
+        /// </summary>
+        string Title { get; }
+
+        /// <summary>
         /// 歌詞を完成させるフレーズ数を取得します。
         /// </summary>
         int CompletePhraseCount { get; }

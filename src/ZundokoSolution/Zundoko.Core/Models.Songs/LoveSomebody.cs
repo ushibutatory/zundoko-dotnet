@@ -3,11 +3,11 @@ using Zundoko.Core.Models.Abstracts;
 
 namespace Zundoko.Core.Models.Songs
 {
-    /// <summary>
-    /// 歌：LoveSomebody
-    /// </summary>
     public class LoveSomebody : BaseSong
     {
+        public override string Title
+            => "LoveSomebody";
+
         protected override IEnumerable<string> _GetAllPhrases()
             => new[] { "ネバ", "ネーバー" };
 

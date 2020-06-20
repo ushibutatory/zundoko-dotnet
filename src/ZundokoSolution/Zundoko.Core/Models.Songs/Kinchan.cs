@@ -3,11 +3,11 @@ using Zundoko.Core.Models.Abstracts;
 
 namespace Zundoko.Core.Models.Songs
 {
-    /// <summary>
-    /// 歌：欽ちゃん
-    /// </summary>
     public class Kinchan : BaseSong
     {
+        public override string Title
+            => "8時だョ全員集合";
+
         protected override IEnumerable<string> _GetAllPhrases()
             => new[] { "８", "時", "だ", "ョ", "！", };
 

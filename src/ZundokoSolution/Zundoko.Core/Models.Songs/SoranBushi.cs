@@ -3,11 +3,11 @@ using Zundoko.Core.Models.Abstracts;
 
 namespace Zundoko.Core.Models.Songs
 {
-    /// <summary>
-    /// 歌：ソーラン節
-    /// </summary>
     public class SoranBushi : BaseSong
     {
+        public override string Title
+            => "ソーラン節";
+
         protected override IEnumerable<string> _GetAllPhrases()
             => new[] { "ヤーレン", "ソーラン" };
 

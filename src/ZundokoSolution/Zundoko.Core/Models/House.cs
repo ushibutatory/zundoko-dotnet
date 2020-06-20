@@ -69,14 +69,25 @@ namespace Zundoko.Core.Models
                     var shout = Audience.Shout();
 
                     // 完成
-                    return new PlayResult(phrases, shout, $"{count:#,##0}回で完成しました。");
+                    return new PlayResult.Builder
+                    {
+                        Song = song,
+                        SingerPhrases = phrases,
+                        AudienceShout = shout,
+                        Message = $"{count:#,##0}回で完成しました。",
+                    }.Build();
                 }
                 else
                 {
                     if (limitCount > 0 && count >= limitCount)
                     {
                         // 試行回数を超えた場合
-                        return new PlayResult(phrases, "", "残念・・・。");
+                        return new PlayResult.Builder
+                        {
+                            Song = song,
+                            SingerPhrases = phrases,
+                            Message = $"{count:#,##0}回では完成しませんでした・・・。",
+                        }.Build();
                     }
                 }
             }
