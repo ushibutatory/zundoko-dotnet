@@ -1,14 +1,13 @@
 ﻿@model IndexViewModel
 @{
-    ViewData["Title"] = "";
+    Model.Title = "Home";
 }
-
 <div class="text-center">
     <h1 class="display-4">Zundoko.Web</h1>
     <ul class="list-group">
         @foreach (var song in Model.Songs)
         {
-            <li class="list-group-item text-left"><a href="api/play/@song.PlayName">@song.Title</a></li>
+            <li class="list-group-item text-left"><a asp-controller="Play" asp-action="Play" asp-route-songName="@song.PlayName">@song.Title</a></li>
         }
     </ul>
 </div>

@@ -20,6 +20,8 @@ namespace Zundoko.Core.Models
 
         public string AudiencePhrase { get; }
 
+        public bool IsSucceed => !string.IsNullOrEmpty(AudiencePhrase);
+
         public string Message { get; }
 
         public class Builder
