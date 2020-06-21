@@ -9,12 +9,12 @@ namespace Zundoko.Web
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -22,6 +22,8 @@ namespace Zundoko.Web
             services.AddControllersWithViews();
 
             services.SetupZundokoApplication();
+
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

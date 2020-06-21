@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Zundoko.Core.Models.Abstracts;
 using Zundoko.Web.Controllers.Abstracts;
 using Zundoko.Web.Models;
@@ -10,12 +11,11 @@ namespace Zundoko.Web.Controllers
     [Route("/")]
     public class IndexController : BaseController
     {
-        private readonly ILogger<IndexController> _logger;
         private readonly IAlbum _album;
 
-        public IndexController(ILoggerFactory loggerFactory, IAlbum album)
+        public IndexController(ILogger<IndexController> logger, IOptions<AppSettings> appSettings, IAlbum album)
+            : base(logger, appSettings)
         {
-            _logger = loggerFactory.CreateLogger<IndexController>();
             _album = album;
         }
 
@@ -27,6 +27,7 @@ namespace Zundoko.Web.Controllers
 
             return View("~/Views/Home/Index.cshtml", new IndexViewModel
             {
+                AppSettings = _appSettings,
                 Songs = songs,
             });
         }

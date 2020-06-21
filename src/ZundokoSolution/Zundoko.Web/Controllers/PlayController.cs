@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Zundoko.Core.Models.Abstracts;
 using Zundoko.Web.Controllers.Abstracts;
 using Zundoko.Web.Models;
@@ -10,13 +11,12 @@ namespace Zundoko.Web.Controllers
     [Route("/Play")]
     public class PlayController : BaseController
     {
-        private readonly ILogger<PlayController> _logger;
         private readonly IAlbum _album;
         private readonly IHouse _house;
 
-        public PlayController(ILoggerFactory loggerFactory, IAlbum album, IHouse house)
+        public PlayController(ILogger<PlayController> logger, IOptions<AppSettings> appSettings, IAlbum album, IHouse house)
+            : base(logger, appSettings)
         {
-            _logger = loggerFactory.CreateLogger<PlayController>();
             _album = album;
             _house = house;
         }
@@ -33,6 +33,7 @@ namespace Zundoko.Web.Controllers
 
             return View("~/Views/Home/Play.cshtml", new PlayViewModel
             {
+                AppSettings = _appSettings,
                 Title = song.Title,
                 Song = song,
                 PlayResult = playResult,

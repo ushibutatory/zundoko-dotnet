@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
 using Zundoko.Web.Controllers.Abstracts;
 using Zundoko.Web.Models;
@@ -10,11 +11,9 @@ namespace Zundoko.Web.Controllers
     [Route("/Error")]
     public class ErrorController : BaseController
     {
-        private readonly ILogger<ErrorController> _logger;
-
-        public ErrorController(ILoggerFactory loggerFactory)
+        public ErrorController(ILogger<ErrorController> logger, IOptions<AppSettings> appSettings)
+            : base(logger, appSettings)
         {
-            _logger = loggerFactory.CreateLogger<ErrorController>();
         }
 
         [HttpGet]
@@ -23,6 +22,7 @@ namespace Zundoko.Web.Controllers
         {
             return View("~/Views/Shared/Error.cshtml", new ErrorViewModel
             {
+                AppSettings = _appSettings,
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
             });
         }

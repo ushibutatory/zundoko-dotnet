@@ -1,6 +1,6 @@
 ﻿namespace Zundoko.Web.Models.Abstracts
 {
-    public interface ILayoutViewModel
+    public abstract class BaseViewModel : ILayoutViewModel
     {
         public AppSettings AppSettings { get; set; }
 
