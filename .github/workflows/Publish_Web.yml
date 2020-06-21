@@ -1,0 +1,21 @@
+name: Publish Web
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Deploy to Heroku
+      run: |
+        docker login --username=_ --password=${HEROKU_API_KEY} registry.heroku.com
+        heroku container:push web -a ${HEROKU_APP_NAME}
+        heroku container:release web -a ${HEROKU_APP_NAME}
+      env:
+        HEROKU_APP_NAME: "zundoko-dotnet"
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
