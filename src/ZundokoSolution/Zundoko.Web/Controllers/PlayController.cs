@@ -28,7 +28,7 @@ namespace Zundoko.Web.Controllers
             var song = _album.FindSong(songName);
             if (song == null) return new NotFoundResult();
 
-            const int count = 100;
+            const int count = 256;
             var playResult = _house.Play(song, count);
 
             return View("~/Views/Home/Play.cshtml", new PlayViewModel
