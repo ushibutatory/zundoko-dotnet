@@ -20,5 +20,5 @@ jobs:
         heroku container:push web -a ${HEROKU_APP_NAME}
         heroku container:release web -a ${HEROKU_APP_NAME}
       env:
-        HEROKU_APP_NAME: "zundoko-dotnet"
+        HEROKU_APP_NAME: zundoko-dotnet
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
