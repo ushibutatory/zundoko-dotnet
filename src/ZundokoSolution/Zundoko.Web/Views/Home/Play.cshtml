@@ -2,14 +2,17 @@
 <div class="text-center">
     <h1 class="display-4">@Model.Song.Title</h1>
     <div>
-        @foreach (var phrase in Model.PlayResult.SingerPhrases)
-        {
-            <span>@phrase</span>
-        }
-        <br />
+        <p class="text-left">
+            @foreach (var phrase in Model.PlayResult.SingerPhrases)
+            {
+                @phrase
+            }
+        </p>
         @if (Model.PlayResult.IsSucceed)
         {
-            <span>@Html.Raw(Model.PlayResult.AudiencePhrase.Replace(Environment.NewLine, "<br />"))</span>
+            <p class="text-left">
+                @Html.Raw(Model.PlayResult.AudiencePhrase.Replace(Environment.NewLine, "<br />"))
+            </p>
         }
         else
         {
