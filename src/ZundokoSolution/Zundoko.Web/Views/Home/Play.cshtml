@@ -1,6 +1,6 @@
 ﻿@model PlayViewModel
 <div class="text-center">
-    <h1 class="display-4">@Model.Song.Title</h1>
+    <h1 class="display-4 text-left">@Model.Song.Title</h1>
     <div>
         <p class="text-left">
             @foreach (var phrase in Model.PlayResult.SingerPhrases)
@@ -8,19 +8,21 @@
                 @phrase
             }
         </p>
-        @if (Model.PlayResult.IsSucceed)
-        {
-            <p class="text-left">
+        <p class="text-left">
+            @if (Model.PlayResult.IsSucceed)
+            {
                 @Html.Raw(Model.PlayResult.AudiencePhrase.Replace(Environment.NewLine, "<br />"))
-            </p>
-        }
-        else
-        {
-            <p>残念……。</p>
-        }
+            }
+            else
+            {
+                @Html.Raw("残念……。");
+            }
+        </p>
     </div>
     <hr />
-    <a class="btn btn-primary" href="@Model.Song.PlayName">Replay</a>
-    <a class="btn btn-secondary" href="@Model.Song.PlayName?cheat=true">Cheat</a>
-    <a class="btn btn-link" href="/">Back</a>
+    <div class="text-left">
+        <a class="btn btn-primary" href="@Model.Song.PlayName">Replay</a>
+        <a class="btn btn-secondary" href="@Model.Song.PlayName?cheat=true">Cheat</a>
+        <a class="btn btn-link" href="/">Back</a>
+    </div>
 </div>
