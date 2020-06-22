@@ -20,6 +20,7 @@
         /// </summary>
         /// <param name="song">歌</param>
         /// <param name="limitCount">試行回数</param>
-        public PlayResult Play(ISong song, int limitCount);
+        /// <returns>実行結果</returns>
+        PlayResult Play(ISong song, int limitCount);
     }
 }
