@@ -9,7 +9,7 @@
         <br />
         @if (Model.PlayResult.IsSucceed)
         {
-            <span>@Model.PlayResult.AudiencePhrase</span>
+            <span>@Html.Raw(Model.PlayResult.AudiencePhrase.Replace(Environment.NewLine, "<br />"))</span>
         }
         else
         {
