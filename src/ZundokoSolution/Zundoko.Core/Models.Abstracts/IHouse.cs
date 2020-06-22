@@ -22,5 +22,12 @@
         /// <param name="limitCount">試行回数</param>
         /// <returns>実行結果</returns>
         PlayResult Play(ISong song, int limitCount);
+
+        /// <summary>
+        /// チートモードで歌を演奏します。
+        /// </summary>
+        /// <param name="song">歌</param>
+        /// <returns>実行結果</returns>
+        PlayResult Cheat(ISong song);
     }
 }

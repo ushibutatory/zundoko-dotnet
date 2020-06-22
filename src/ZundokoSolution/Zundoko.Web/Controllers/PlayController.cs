@@ -22,14 +22,16 @@ namespace Zundoko.Web.Controllers
         }
 
         [HttpGet("{songName}")]
-        public IActionResult Play(string songName)
+        public IActionResult Play(string songName, [FromQuery] bool cheat = false)
         {
             // 歌検索
             var song = _album.FindSong(songName);
             if (song == null) return new NotFoundResult();
 
             const int count = 256;
-            var playResult = _house.Play(song, count);
+            var playResult = cheat
+                ? _house.Cheat(song)
+                : _house.Play(song, count);
 
             return View("~/Views/Home/Play.cshtml", new PlayViewModel
             {

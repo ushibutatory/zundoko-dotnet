@@ -71,7 +71,7 @@ namespace Zundoko.Core.Models.Abstracts
         /// <summary>
         /// 完成フレーズ数を取得します。
         /// </summary>
-        public int CompletePhraseCount => CompletePhrases.Count();
+        public int CompletePhrasesCount => CompletePhrases.Count();
 
         /// <summary>
         /// 掛け声を取得します。
@@ -100,7 +100,7 @@ namespace Zundoko.Core.Models.Abstracts
             var separator = Environment.NewLine;
 
             // 直近のフレーズを結合
-            var input = string.Join(separator, phraseList.Skip(phraseList.Count() - CompletePhraseCount));
+            var input = string.Join(separator, phraseList.Skip(phraseList.Count() - CompletePhrasesCount));
 
             // 完成フレーズを結合
             var answer = string.Join(separator, _completePhrases);

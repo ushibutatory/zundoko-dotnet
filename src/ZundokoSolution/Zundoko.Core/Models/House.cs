@@ -42,18 +42,11 @@ namespace Zundoko.Core.Models
         /// </summary>
         /// <param name="song">歌</param>
         /// <param name="limitCount">試行回数</param>
+        /// <returns>実行結果</returns>
         public PlayResult Play(ISong song, int limitCount = 100)
         {
-            if (song == null)
-                throw new InvalidOperationException($"引数[{nameof(song)}]がnullです。");
-            if (Singer == null)
-                throw new Exception("Singerプロパティが未設定です。");
-            if (Audience == null)
-                throw new Exception("Audienceプロパティが未設定です。");
-
             // 準備
-            Singer.Standby(song);
-            Audience.Standby(song);
+            _Standby(song);
 
             var phrases = new List<string>();
             var count = 0;
@@ -63,7 +56,7 @@ namespace Zundoko.Core.Models
                 phrases.Add(Singer.Sing());
                 count++;
 
-                if (song.IsCompleted(phrases.TakeLast(song.CompletePhraseCount)))
+                if (song.IsCompleted(phrases.TakeLast(song.CompletePhrasesCount)))
                 {
                     // フレーズが完成したら、観客から掛け声を取得
                     var shout = Audience.Shout();
@@ -92,6 +85,41 @@ namespace Zundoko.Core.Models
                 }
             }
             throw new Exception($"ループが想定通りに終了しませんでした。 [{nameof(song)}:{JsonConvert.SerializeObject(song)}]");
+        }
+
+        /// <summary>
+        /// チートモードで歌を演奏します。
+        /// </summary>
+        /// <param name="song">歌</param>
+        /// <returns>実行結果</returns>
+        public PlayResult Cheat(ISong song)
+        {
+            // 準備
+            _Standby(song);
+
+            return new PlayResult.Builder
+            {
+                Song = song,
+                SingerPhrases = song.CompletePhrases,
+                AudienceShout = Audience.Shout(),
+                Message = "チートモードで完成しました。",
+            }.Build();
+        }
+
+        private IHouse _Standby(ISong song)
+        {
+            if (song == null)
+                throw new InvalidOperationException($"引数[{nameof(song)}]がnullです。");
+            if (Singer == null)
+                throw new Exception("Singerプロパティが未設定です。");
+            if (Audience == null)
+                throw new Exception("Audienceプロパティが未設定です。");
+
+            // 準備
+            Singer.Standby(song);
+            Audience.Standby(song);
+
+            return this;
         }
     }
 }
