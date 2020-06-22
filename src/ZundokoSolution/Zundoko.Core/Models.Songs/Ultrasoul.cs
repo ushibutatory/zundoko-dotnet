@@ -9,12 +9,12 @@ namespace Zundoko.Core.Models.Songs
             => "ウルトラソウル";
 
         protected override IEnumerable<string> _GetAllPhrases()
-            => new[] { "ウ", "ル", "ト", "ラ", "ソ" };
+            => new[] { "ウ", "ル", "ト", "ラ", "ソ", "ッ", "！" };
 
         protected override IEnumerable<int> _GetCompletePhraseIndexList()
-            => new[] { 0, 1, 2, 3, 4, 0, 1 };
+            => new[] { 0, 1, 2, 3, 4, 0, 5, 6 };
 
         protected override string _GetLastPhrase()
-            => "！ ＼ハァイ！／";
+            => "＼ハイ！／";
     }
 }
