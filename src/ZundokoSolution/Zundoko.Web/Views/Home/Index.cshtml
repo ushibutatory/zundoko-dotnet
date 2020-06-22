@@ -4,10 +4,10 @@
 }
 <div class="text-center">
     <h1 class="display-4 text-left">Zundoko.Web</h1>
-    <ul class="list-group">
+    <div class="list-group">
         @foreach (var song in Model.Songs)
         {
-            <li class="btn btn-light text-left"><a href="/Play/@song.PlayName">@song.Title</a></li>
+            <a class="text-left list-group-item list-group-item-action" href="/Play/@song.PlayName">@song.Title</a>
         }
-    </ul>
+    </div>
 </div>
