@@ -73,6 +73,22 @@ $ dotnet Zundoko.App.dll play s 100
 59回で完成しました。
 ```
 
+##### cheat: チートモード
+
+絶対成功します。
+
+```bash
+$ dotnet Zundoko.App.dll cheat z
+ズンズンズンズンドコ
+＼キ・ヨ・シ！／
+チートモードで完成しました。
+
+$ $ dotnet Zundoko.App.dll cheat s
+ヤーレンソーランソーランヤーレンソーランソーラン
+（ハイ！　ハイ！）
+チートモードで完成しました。
+```
+
 ### Web版
 
 ![Publish Web](https://github.com/ushibutatory/zundoko-dotnet/workflows/Publish%20Web/badge.svg)
