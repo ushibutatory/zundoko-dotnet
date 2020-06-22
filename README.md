@@ -75,6 +75,8 @@ $ dotnet Zundoko.App.dll play s 100
 
 ### Web版
 
+![Publish Web](https://github.com/ushibutatory/zundoko-dotnet/workflows/Publish%20Web/badge.svg)
+
 [https://zundoko-dotnet.herokuapp.com/](https://zundoko-dotnet.herokuapp.com/)
 
 （※Heroku Free Plan）
