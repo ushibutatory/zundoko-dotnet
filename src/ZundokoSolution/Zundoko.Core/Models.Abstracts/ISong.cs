@@ -20,12 +20,17 @@ namespace Zundoko.Core.Models.Abstracts
         /// <summary>
         /// 歌詞を完成させるフレーズ数を取得します。
         /// </summary>
-        int CompletePhraseCount { get; }
+        int CompletePhrasesCount { get; }
 
         /// <summary>
         /// 使用するフレーズリストを取得します。
         /// </summary>
         IEnumerable<string> Phrases { get; }
+
+        /// <summary>
+        /// 完成フレーズリストを取得します。
+        /// </summary>
+        IEnumerable<string> CompletePhrases { get; }
 
         /// <summary>
         /// 最後の掛け声を取得します。

@@ -2,8 +2,8 @@
 {
     public interface ILayoutViewModel
     {
-        public AppSettings AppSettings { get; set; }
+        AppSettings AppSettings { get; set; }
 
-        public string Title { get; set; }
+        string Title { get; set; }
     }
 }

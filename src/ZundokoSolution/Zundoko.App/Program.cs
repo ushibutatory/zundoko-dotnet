@@ -89,6 +89,41 @@ namespace Zundoko.App
                 });
             });
 
+            app.Command("Cheat", (command) =>
+            {
+                command.Description = "チートモードで実行します。";
+                command.HelpOption(helpOption);
+
+                var title = command.Argument("title", "曲名をアルファベットで指定します（前方一致）。");
+
+                command.OnExecute(() =>
+                {
+                    if (title == null || string.IsNullOrEmpty(title.Value))
+                    {
+                        return command.Execute("-h");
+                    }
+                    var album = provider.GetService<IAlbum>();
+
+                    var song = album.FindSong(title.Value);
+
+                    if (song == null)
+                    {
+                        Console.WriteLine("歌が見つかりませんでした。");
+                        return -1;
+                    }
+
+                    var house = provider.GetService<IHouse>();
+
+                    var result = house.Cheat(song);
+
+                    Console.WriteLine(string.Join("", result.SingerPhrases));
+                    Console.WriteLine(result.AudiencePhrase);
+                    Console.WriteLine(result.Message);
+
+                    return 0;
+                });
+            });
+
             // 引数なしで実行された場合はヘルプ表示
             if (args?.Length == 0) args = new[] { "-h" };
 
