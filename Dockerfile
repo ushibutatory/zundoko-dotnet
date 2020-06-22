@@ -7,6 +7,7 @@ COPY ./src/ZundokoSolution src/ZundokoSolution
 
 # build
 WORKDIR /src/ZundokoSolution
+ARG MY_NUGET_SOURCE
 RUN echo ${MY_NUGET_SOURCE}
 RUN dotnet restore -s https://api.nuget.org/v3/index.json -s ${MY_NUGET_SOURCE}
 RUN dotnet build
