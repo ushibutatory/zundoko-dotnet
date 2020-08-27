@@ -89,7 +89,7 @@ namespace Zundoko.App
                 });
             });
 
-            app.Command("Cheat", (command) =>
+            app.Command("cheat", (command) =>
             {
                 command.Description = "チートモードで実行します。";
                 command.HelpOption(helpOption);
@@ -124,8 +124,11 @@ namespace Zundoko.App
                 });
             });
 
-            // 引数なしで実行された場合はヘルプ表示
-            if (args?.Length == 0) args = new[] { "-h" };
+            app.OnExecute(() =>
+            {
+                // 引数なしで実行された場合はヘルプ表示
+                return app.Execute("-h");
+            });
 
             app.Execute(args);
         }
