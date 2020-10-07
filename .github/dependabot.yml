@@ -3,5 +3,4 @@ updates:
   - package-ecosystem: "nuget"
     directory: "/src/ZundokoSolution/"
     schedule:
-      interval: "weekly"
-    target-branch: "nuget"
+      interval: "monthly"
