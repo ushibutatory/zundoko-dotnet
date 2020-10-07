@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    paths:
+      - src/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup NuGet
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y nuget
+    - name: Build
+      run: |
+        cd ${SOLUTION_DIR}
+        dotnet restore -s https://api.nuget.org/v3/index.json -s ${NUGET_SOURCE}
+        dotnet clean
+        dotnet build
+        dotnet pack
+      env:
+        SOLUTION_DIR: ./src/ZundokoSolution
+        NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
