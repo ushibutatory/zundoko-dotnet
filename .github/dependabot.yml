@@ -4,3 +4,5 @@ updates:
     directory: "/src/ZundokoSolution/"
     schedule:
       interval: "monthly"
+    reviewers:
+      - "ushibutatory"
