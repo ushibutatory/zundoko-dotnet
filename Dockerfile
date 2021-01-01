@@ -7,9 +7,10 @@ COPY ./src/ZundokoSolution src/ZundokoSolution
 
 # build
 WORKDIR /src/ZundokoSolution
-ARG MY_NUGET_SOURCE
-RUN echo ${MY_NUGET_SOURCE}
-RUN dotnet restore -s https://api.nuget.org/v3/index.json -s ${MY_NUGET_SOURCE}
+ARG NUGET_SOURCE
+ARG NUGET_USER
+ARG NUGET_PASS
+RUN dotnet nuget add source ${NUGET_SOURCE} -u ${NUGET_USER} -p ${NUGET_PASS} --store-password-in-clear-text
 RUN dotnet build
 
 # publish

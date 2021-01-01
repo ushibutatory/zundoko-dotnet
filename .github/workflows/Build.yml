@@ -4,23 +4,24 @@ on:
   push:
     paths:
       - src/**
+      - .github/workflows/Build.yml
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Setup NuGet
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y nuget
-    - name: Build
-      run: |
-        cd ${SOLUTION_DIR}
-        dotnet restore -s https://api.nuget.org/v3/index.json -s ${NUGET_SOURCE}
-        dotnet clean
-        dotnet build
-        dotnet pack
-      env:
-        SOLUTION_DIR: ./src/ZundokoSolution
-        NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup
+        uses: actions/setup-dotnet@v1
+      - name: Build and Test
+        run: |
+          cd "${GITHUB_WORKSPACE}/${SOLUTION_DIR}/"
+          dotnet nuget add source ${NUGET_SOURCE} -u ${NUGET_USER} -p ${NUGET_PASS} --store-password-in-clear-text
+          dotnet build
+          dotnet test
+    env:
+      SOLUTION_DIR: ./src/ZundokoSolution
+      NUGET_SOURCE: https://nuget.pkg.github.com/gozolop-core/index.json
+      NUGET_USER: ${{ secrets.NUGET_USER }}
+      NUGET_PASS: ${{ secrets.NUGET_PASS }}
