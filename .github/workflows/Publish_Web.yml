@@ -6,20 +6,22 @@ on:
       - master
     paths:
       - src/**
-      - .github/workflows/**
+      - .github/workflows/Publish_Web.yml
       - Dockerfile
 
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Deploy to Heroku
-      run: |
-        heroku container:login
-        heroku container:push web -a ${HEROKU_APP_NAME} --arg MY_NUGET_SOURCE=${MY_NUGET_SOURCE}
-        heroku container:release web -a ${HEROKU_APP_NAME}
-      env:
-        MY_NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
-        HEROKU_APP_NAME: zundoko-dotnet
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      - uses: actions/checkout@master
+      - name: Deploy to Heroku
+        run: |
+          heroku container:login
+          heroku container:push web -a ${HEROKU_APP_NAME} --arg NUGET_SOURCE=${NUGET_SOURCE} --arg NUGET_USER=${NUGET_USER} --arg NUGET_PASS=${NUGET_PASS}
+          heroku container:release web -a ${HEROKU_APP_NAME}
+        env:
+          NUGET_SOURCE: https://nuget.pkg.github.com/gozolop-core/index.json
+          NUGET_USER: ${{ secrets.NUGET_USER }}
+          NUGET_PASS: ${{ secrets.NUGET_PASS }}
+          HEROKU_APP_NAME: zundoko-dotnet
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
