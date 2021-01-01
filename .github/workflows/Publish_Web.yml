@@ -17,7 +17,7 @@ jobs:
       - name: Deploy to Heroku
         run: |
           heroku container:login
-          heroku container:push web -a ${HEROKU_APP_NAME} --arg NUGET_SOURCE=${NUGET_SOURCE} --arg NUGET_USER=${NUGET_USER} --arg NUGET_PASS=${NUGET_PASS}
+          heroku container:push web -a ${HEROKU_APP_NAME} --arg NUGET_SOURCE=${NUGET_SOURCE},NUGET_USER=${NUGET_USER},NUGET_PASS=${NUGET_PASS}
           heroku container:release web -a ${HEROKU_APP_NAME}
         env:
           NUGET_SOURCE: https://nuget.pkg.github.com/gozolop-core/index.json
