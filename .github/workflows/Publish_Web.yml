@@ -26,7 +26,7 @@ jobs:
       - name: Deploy to AWS
         env:
           AWS_ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          AWS_ECR_REPOSITORY: fizzbuzz
+          AWS_ECR_REPOSITORY: zundoko-dotnet
           DOCKER_IMAGE_TAG: latest
           NUGET_SOURCE: https://nuget.pkg.github.com/gozolop-core/index.json
           NUGET_USER: ${{ secrets.NUGET_USER }}
