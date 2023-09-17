@@ -19,7 +19,7 @@ jobs:
           cd "${GITHUB_WORKSPACE}/${SOLUTION_DIR}/"
           dotnet nuget add source ${NUGET_SOURCE} -u ${NUGET_USER} -p ${NUGET_PASS} --store-password-in-clear-text
           dotnet build
-          dotnet test
+          dotnet test --no-build
     env:
       SOLUTION_DIR: ./src/ZundokoSolution
       NUGET_SOURCE: https://nuget.pkg.github.com/gozolop-core/index.json
