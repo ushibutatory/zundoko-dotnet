@@ -23,14 +23,20 @@ jobs:
           role-to-assume: ${{ secrets.AWS_IAM_ROLE }}
       - uses: aws-actions/amazon-ecr-login@v1
         id: login-ecr
-      - name: Deploy to AWS
+      - name: Build Docker image
         env:
-          AWS_ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          AWS_ECR_REPOSITORY: zundoko-dotnet
-          DOCKER_IMAGE_TAG: latest
           NUGET_SOURCE: https://nuget.pkg.github.com/gozolop-core/index.json
           NUGET_USER: ${{ secrets.NUGET_USER }}
           NUGET_PASS: ${{ secrets.NUGET_PASS }}
-        run: |
+        run: >
           docker build . --tag ${{ env.AWS_ECR_REGISTRY }}/${{ env.AWS_ECR_REPOSITORY }}:${{ env.DOCKER_IMAGE_TAG }}
+            --build-arg NUGET_SOURCE=${{ env.NUGET_SOURCE }}
+            --build-arg NUGET_USER=${{ env.NUGET_USER }}
+            --build-arg NUGET_PASS=${{ env.NUGET_PASS }}
+      - name: Deploy to AWS
+        run: |
           docker push ${{ env.AWS_ECR_REGISTRY }}/${{ env.AWS_ECR_REPOSITORY }}:${{ env.DOCKER_IMAGE_TAG }}
+    env:
+      AWS_ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      AWS_ECR_REPOSITORY: zundoko-dotnet
+      DOCKER_IMAGE_TAG: latest
