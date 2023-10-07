@@ -4,5 +4,10 @@ updates:
     directory: "/src/ZundokoSolution/"
     schedule:
       interval: "monthly"
+    target-branch: "develop"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
     reviewers:
       - "ushibutatory"
