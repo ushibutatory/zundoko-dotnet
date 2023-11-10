@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zundoko.Web", "Zundoko.Web\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zundoko.Core.Tests", "Zundoko.Core.Tests\Zundoko.Core.Tests.csproj", "{8A1E061E-04E3-4C68-8204-8EF9A0F2AC16}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zundoko.Lambda.Play", "Zundoko.Lambda\Zundoko.Lambda.Play.csproj", "{4810222D-DC61-44E8-BC70-474E76A7F323}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zundoko.Lambda.Play", "Zundoko.Lambda.Play\Zundoko.Lambda.Play.csproj", "{4810222D-DC61-44E8-BC70-474E76A7F323}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zundoko.Lambda.List", "Zundoko.Lambda.List\Zundoko.Lambda.List.csproj", "{879BFAE7-316B-4C5B-83C0-1C7E9F381A46}"
 EndProject
