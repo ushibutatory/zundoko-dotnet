@@ -12,5 +12,6 @@
   "function-runtime": "dotnet6",
   "function-memory-size": 256,
   "function-timeout": 30,
-  "function-handler": "Zundoko.Lambda::Zundoko.Lambda.Play.Function::FunctionHandler"
+  "function-name": "zundoko-play",
+  "function-handler": "Zundoko.Lambda.Play::Zundoko.Lambda.Play.Function::FunctionHandler"
 }
