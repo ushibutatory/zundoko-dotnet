@@ -11,20 +11,14 @@
     <PublishReadyToRun>true</PublishReadyToRun>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.7.0" />
     <PackageReference Include="Amazon.Lambda.Core" Version="2.2.0" />
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.4.0" />
+    <PackageReference Include="Gozolop.Core.Aws.Lambda" Version="2023.8.3.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zundoko.Core\Zundoko.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Amazon.Lambda.APIGatewayEvents">
-      <HintPath>..\..\..\..\..\..\.nuget\nuget-packages\amazon.lambda.apigatewayevents\2.7.0\lib\netcoreapp3.1\Amazon.Lambda.APIGatewayEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Gozolop.Core.Aws.Lambda">
-      <HintPath>..\..\..\..\..\..\.nuget\nuget-packages\gozolop.core.aws.lambda\2023.8.3.1\lib\netstandard2.1\Gozolop.Core.Aws.Lambda.dll</HintPath>
-    </Reference>
   </ItemGroup>
 </Project>
