@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30204.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zundoko.Core", "Zundoko.Core\Zundoko.Core.csproj", "{1F80C571-DE26-4B8F-9588-6EA9CE319C3E}"
 EndProject
@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zundoko.App", "Zundoko.App\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zundoko.Web", "Zundoko.Web\Zundoko.Web.csproj", "{63A85245-BD53-451A-BE07-A7998520F85F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zundoko.Core.Tests", "Zundoko.Core.Tests\Zundoko.Core.Tests.csproj", "{8A1E061E-04E3-4C68-8204-8EF9A0F2AC16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zundoko.Core.Tests", "Zundoko.Core.Tests\Zundoko.Core.Tests.csproj", "{8A1E061E-04E3-4C68-8204-8EF9A0F2AC16}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zundoko.Lambda.Play", "Zundoko.Lambda.Play\Zundoko.Lambda.Play.csproj", "{4810222D-DC61-44E8-BC70-474E76A7F323}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zundoko.Lambda.List", "Zundoko.Lambda.List\Zundoko.Lambda.List.csproj", "{879BFAE7-316B-4C5B-83C0-1C7E9F381A46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{8A1E061E-04E3-4C68-8204-8EF9A0F2AC16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A1E061E-04E3-4C68-8204-8EF9A0F2AC16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A1E061E-04E3-4C68-8204-8EF9A0F2AC16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4810222D-DC61-44E8-BC70-474E76A7F323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4810222D-DC61-44E8-BC70-474E76A7F323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4810222D-DC61-44E8-BC70-474E76A7F323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4810222D-DC61-44E8-BC70-474E76A7F323}.Release|Any CPU.Build.0 = Release|Any CPU
+		{879BFAE7-316B-4C5B-83C0-1C7E9F381A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{879BFAE7-316B-4C5B-83C0-1C7E9F381A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{879BFAE7-316B-4C5B-83C0-1C7E9F381A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{879BFAE7-316B-4C5B-83C0-1C7E9F381A46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -45,5 +45,20 @@ namespace Zundoko.Core.Tests.Models
             Assert.NotNull(song);
             _logger.LogDebug(JsonConvert.SerializeObject(song));
         }
+
+        [Theory]
+        [InlineData("-", false)]
+        [InlineData("z", true)]
+        public void TryFindSongs(string playName, bool isExists)
+        {
+            var album = _provider.GetService<IAlbum>();
+            var actual = album.TryFindSong(playName, out var song);
+
+            Assert.Equal(isExists, actual);
+            if (isExists)
+                Assert.NotNull(song);
+            else
+                Assert.Null(song);
+        }
     }
 }

@@ -1,0 +1,33 @@
+name: Deploy to AWS Lambda
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - src/**
+      - .github/workflows/deploy_lambda.yml
+
+jobs:
+  deploy_list:
+    uses: ushibutatory/actions/.github/workflows/dotnet-deploy-lambda.yml@main
+    with:
+      solution_dir: /src/ZundokoSolution
+      project_dir: Zundoko.Lambda.List
+      with_nuget: true
+    secrets:
+      nuget_user: ${{ secrets.NUGET_USER }}
+      nuget_pass: ${{ secrets.NUGET_PASS }}
+      aws_region: ${{ secrets.AWS_REGION }}
+      aws_iam_role: ${{ secrets.AWS_IAM_ROLE }}
+  deploy_play:
+    uses: ushibutatory/actions/.github/workflows/dotnet-deploy-lambda.yml@main
+    with:
+      solution_dir: /src/ZundokoSolution
+      project_dir: Zundoko.Lambda.Play
+      with_nuget: true
+    secrets:
+      nuget_user: ${{ secrets.NUGET_USER }}
+      nuget_pass: ${{ secrets.NUGET_PASS }}
+      aws_region: ${{ secrets.AWS_REGION }}
+      aws_iam_role: ${{ secrets.AWS_IAM_ROLE }}

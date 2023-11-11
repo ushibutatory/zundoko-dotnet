@@ -39,5 +39,17 @@ namespace Zundoko.Core.Models
         /// <returns>歌オブジェクト</returns>
         public ISong FindSong(string playName)
             => Songs.ToList().Find((song) => song.PlayName.ToUpper().StartsWith(playName.ToUpper()));
+
+        /// <summary>
+        /// 歌を検索します。
+        /// </summary>
+        /// <param name="playName">実行名（前方一致）</param>
+        /// <param name="song">歌</param>
+        /// <returns>歌が見つかれば true を、見つからなければ false を返します。</returns>
+        public bool TryFindSong(string playName, out ISong song)
+        {
+            song = FindSong(playName);
+            return song != null;
+        }
     }
 }
