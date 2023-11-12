@@ -53,9 +53,9 @@ public class Function
                 var album = provider.GetService<IAlbum>()
                     ?? throw new Exception($"Invalid configuration. [{nameof(IAlbum)}]");
 
-                var songTitles = album.Songs.Select(song => song.GetType().Name);
+                var songs = album.Songs;
 
-                logger.LogDebug("SongTitles are {result}", JsonSerializer.Serialize(songTitles));
+                logger.LogDebug("Songs are {result}", JsonSerializer.Serialize(songs));
 
                 return new APIGatewayProxyResponse
                 {
@@ -65,7 +65,7 @@ public class Function
                         { "Content-Type", "application/json" },
                         { "Access-Control-Allow-Origin", "*" },
                     },
-                    Body = JsonSerializer.Serialize(songTitles),
+                    Body = JsonSerializer.Serialize(songs),
                 };
 
             default:
