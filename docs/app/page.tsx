@@ -3,12 +3,15 @@
 import React from "react";
 import styles from "./page.module.scss";
 import Nav from "@/components/nav";
-import ZundokoService from "@/services/zundokoService";
+import ResultView from "@/components/resultView";
 import ISong from "@/models/ISong";
+import IResult from "@/models/IResult";
+import ZundokoService from "@/services/zundokoService";
 
 export default function Page() {
   const [songs, setSongs] = React.useState<ISong[]>();
   const [selectedSong, setSelectedSong] = React.useState<ISong>();
+  const [result, setResult] = React.useState<IResult>();
 
   // 初期表示時
   React.useEffect(() => {
@@ -33,7 +36,7 @@ export default function Page() {
     if (!selectedSong) return;
 
     const service = new ZundokoService();
-    await service.play(selectedSong.PlayName);
+    setResult(await service.play(selectedSong.PlayName));
   };
 
   return (
@@ -73,7 +76,7 @@ export default function Page() {
               </button>
             </div>
           </div>
-          <div className="col-md-6"></div>
+          <div className="col-md-6">{!result ? <></> : ResultView(result)}</div>
         </div>
       </div>
     </main>

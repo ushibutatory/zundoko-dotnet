@@ -1,0 +1,42 @@
+.singerPhrase {
+  display: inline-block;
+  margin: 0.3rem;
+}
+
+@keyframes rainbowText {
+  0% {
+    color: violet;
+  }
+  14% {
+    color: indigo;
+  }
+  28% {
+    color: blue;
+  }
+  42% {
+    color: green;
+  }
+  57% {
+    color: yellow;
+  }
+  71% {
+    color: orange;
+  }
+  85% {
+    color: red;
+  }
+  100% {
+    color: violet;
+  }
+}
+
+.audiencePhrase {
+  font-weight: bold;
+  animation: rainbowText 1s linear infinite;
+
+  margin-bottom: 2rem;
+}
+
+.message {
+  margin-bottom: 2rem;
+}
