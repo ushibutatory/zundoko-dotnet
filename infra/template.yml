@@ -37,3 +37,12 @@ Resources:
       HttpMethod: POST
       Integration:
         Type: MOCK
+  PlayOptionsMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref ZundokoApi
+      ResourceId: !Ref PlayResource
+      AuthorizationType: None
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
