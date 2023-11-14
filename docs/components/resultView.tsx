@@ -6,8 +6,8 @@ const ResultView = (result: IResult) => {
 
   const phrases = result.SingerPhrases.map((_, index) => {
     const inlineStyle = {
-      paddingLeft: `${Math.random() * 1.0}rem`,
-      paddingRight: `${Math.random() * 1.0}rem`,
+      paddingLeft: `${Math.random() * 0.5}rem`,
+      paddingRight: `${Math.random() * 0.5}rem`,
     };
     const phraseView = (
       <span key={`${index}-${_}`} className={styles.singerPhrase} style={inlineStyle}>
