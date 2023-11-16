@@ -21,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
           crossOrigin="anonymous"
         ></Script>
+        <Script src="https://kit.fontawesome.com/e51ffff573.js" crossOrigin="anonymous"></Script>
       </body>
     </html>
   );

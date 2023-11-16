@@ -9,12 +9,12 @@ const ResultView = (result: IResult) => {
       paddingLeft: `${Math.random() * 0.5}rem`,
       paddingRight: `${Math.random() * 0.5}rem`,
     };
-    const phraseView = (
+
+    return (
       <span key={`${index}-${_}`} className={styles.singerPhrase} style={inlineStyle}>
         {_}
       </span>
     );
-    return phraseView;
   });
 
   return (
